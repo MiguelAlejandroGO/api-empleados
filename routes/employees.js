@@ -42,8 +42,11 @@ router.delete('/:id', (req, res) => {
 // INSERT An Employee
 router.post('/', (req, res) => {
   const {id, name, salary} = req.body;
-  console.log(id, name, salary);
-  const query = `
+
+  if ( id == null || name == null || salary == null){
+    res.status(400).json({ datos: 'Todos los campos son obligatorios' });
+  }else{
+    const query = `
     CALL employeeAddOrEdit(?, ?, ?);
   `;
   mysqlConnection.query(query, [id, name, salary], (err, rows, fields) => {
@@ -54,7 +57,8 @@ router.post('/', (req, res) => {
       console.log('Error');
     }
   });
-
+  }
+  
 });
 
 router.put('/:id', (req, res) => {
