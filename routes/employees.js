@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
   const { id, name, salary } = req.body;
 
   if (id === null || name === null || salary === null) {
-    res.status(400).json({ datos: 'Todos los campos son obligatorios' });
+    res.status(400).json({ message: 'Todos los campos son obligatorios' });
   } else {
     const query = `
     CALL employeeAddOrEdit(?, ?, ?);
@@ -66,12 +66,12 @@ router.put('/:id', (req, res) => {
   const { id } = req.params;
 
   if (id === undefined || id === null) {
-    res.status(400).json({ datos: 'Usuarios no encontrado' });
+    res.status(400).json({ message: 'Usuarios no encontrado' });
 
   } else {
 
     if (name === null || salary === null) {
-      res.status(400).json({ datos: 'Todos los campos son obligatorios' });
+      res.status(400).json({ message: 'Todos los campos son obligatorios' });
     } else {
       const query = `
     CALL employeeAddOrEdit(?, ?, ?);
