@@ -70,7 +70,7 @@ router.put('/:id', (req, res) => {
 
   } else {
 
-    if (id === null || name === null || salary === null || lat === null || longt === null || namePlace) {
+    if (id === null || name === null || salary === null || lat === null || longt === null || namePlace === null ) {
       res.status(400).json({ message: 'Todos los campos son obligatorios' });
     } else {
       const query = `
