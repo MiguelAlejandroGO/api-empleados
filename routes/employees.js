@@ -71,10 +71,11 @@ router.put('/:id', (req, res) => {
   } else {
 
     if (id === null || name === null || salary === null || lat === null || longt === null || namePlace === null ) {
+      console.log(req.body);
       res.status(400).json({ message: 'Todos los campos son obligatorios' });
     } else {
       const query = `
-    CALL employeeAddOrEdit(?, ?, ?);
+    CALL employeeAddOrEdit(?, ?, ?, ?, ?, ?);
   `;
       mysqlConnection.query(query, [id, name, salary, lat, longt, namePlace], (err, rows, fields) => {
         if (!err) {
