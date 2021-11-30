@@ -41,15 +41,15 @@ router.delete('/:id', (req, res) => {
 
 // INSERT An Employee
 router.post('/', (req, res) => {
-  const { id, name, salary, lat, long, namePlace } = req.body;
+  const { id, name, salary, lat, longt, namePlace } = req.body;
 
-  if (id === null || name === null || salary === null || lat === null || long === null || namePlace) {
+  if (id === null || name === null || salary === null || lat === null || longt === null || namePlace === null) {
     res.status(400).json({ message: 'Todos los campos son obligatorios' });
   } else {
     const query = `
     CALL employeeAddOrEdit(?, ?, ?, ?, ?, ?);
   `;
-    mysqlConnection.query(query, [id, name, salary, lat, long, namePlace], (err, rows, fields) => {
+    mysqlConnection.query(query, [id, name, salary, lat, longt, namePlace], (err, rows, fields) => {
       if (!err) {
         res.json({ status: 'Employeed Saved' });
       } else {
@@ -62,7 +62,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const { name, salary, lat, long, namePlace } = req.body;
+  const { name, salary, lat, longt, namePlace } = req.body;
   const { id } = req.params;
 
   if (id === undefined || id === null) {
@@ -70,13 +70,13 @@ router.put('/:id', (req, res) => {
 
   } else {
 
-    if (id === null || name === null || salary === null || lat === null || long === null || namePlace) {
+    if (id === null || name === null || salary === null || lat === null || longt === null || namePlace) {
       res.status(400).json({ message: 'Todos los campos son obligatorios' });
     } else {
       const query = `
     CALL employeeAddOrEdit(?, ?, ?);
   `;
-      mysqlConnection.query(query, [id, name, salary, lat, long, namePlace], (err, rows, fields) => {
+      mysqlConnection.query(query, [id, name, salary, lat, longt, namePlace], (err, rows, fields) => {
         if (!err) {
           res.json({ status: 'Employee Updated' });
         } else {
