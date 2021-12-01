@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
 });
 
 // DELETE An Employee
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const { id } = req.params;
   mysqlConnection.query('DELETE FROM employee WHERE id = ?', [id], (err, rows, fields) => {
     if (!err) {
@@ -40,7 +40,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // INSERT An Employee
-router.post('/', (req, res) => {
+router.post('/create', (req, res) => {
   const { id, name, salary, lat, longt, namePlace } = req.body;
 
   if (id === null || name === null || salary === null || lat === null || longt === null || namePlace === null) {
@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
 
 });
 
-router.put('/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
   const { name, salary, lat, longt, namePlace } = req.body;
   const { id } = req.params;
 
