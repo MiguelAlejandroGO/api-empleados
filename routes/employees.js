@@ -51,7 +51,7 @@ router.post('/create', (req, res) => {
   `;
     mysqlConnection.query(query, [id, name, salary, lat, longt, namePlace], (err, rows, fields) => {
       if (!err) {
-        res.json({ status: 'Employeed Saved', message: res.json(rows) });
+        res.json({ status: 'Employeed Saved' });
       } else {
         console.log(err);
         console.log('Error');
@@ -79,7 +79,7 @@ router.put('/edit/:id', (req, res) => {
   `;
       mysqlConnection.query(query, [id, name, salary, lat, longt, namePlace], (err, rows, fields) => {
         if (!err) {
-          res.json({ status: 'Employee Updated'});
+          res.json({ status: 'Employee Updated' });
         } else {
           console.log(err);
         }
